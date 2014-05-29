@@ -1,6 +1,6 @@
 package Bot::Cobalt::Plugin::SeenURL;
 # ABSTRACT: Bot::Cobalt plugin for detecting re-linked URLs
-$Bot::Cobalt::Plugin::SeenURL::VERSION = '0.002';
+$Bot::Cobalt::Plugin::SeenURL::VERSION = '0.003';
 use strict;
 use warnings;
 
@@ -98,7 +98,7 @@ sub Bot_public_msg {
       next if not $uri;
 
       if ( my $link = $self->linked($uri, $nick, $channel) ) {
-         if ( $nick = $link->{nick} ) {
+         if ( $nick eq $link->{nick} ) {
             $relink++;
             next if $self->allow_relink;
          }
@@ -135,7 +135,7 @@ Bot::Cobalt::Plugin::SeenURL - Bot::Cobalt plugin for detecting re-linked URLs
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
